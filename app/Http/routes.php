@@ -10,9 +10,9 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+Route::get('/','TaquillaController@home');
 Route::get('/registro','TaquillaController@registro');
-Route::get('/registro','TaquillaController@preregistro');
+Route::get('/preregistro','TaquillaController@preregistro');
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +23,6 @@ Route::get('/registro','TaquillaController@preregistro');
 | it contains. The "web" middleware group is defined in your HTTP
 | kernel and includes session state, CSRF protection, and more.
 |
-*/
 
 Route::group(['middleware' => ['web']], function () {
     //
