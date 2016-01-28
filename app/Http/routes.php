@@ -10,9 +10,6 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('/','TaquillaController@home');
-Route::get('/registro','TaquillaController@registro');
-Route::get('/preregistro','TaquillaController@preregistro');
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +21,15 @@ Route::get('/preregistro','TaquillaController@preregistro');
 | kernel and includes session state, CSRF protection, and more.
 |
 
+
+*/
 Route::group(['middleware' => ['web']], function () {
     //
+    //
+    Route::get('/','TaquillaController@home');
+Route::get('/registro','TaquillaController@registro');
+Route::post('/registro','TaquillaController@registrar');
+Route::get('/preregistro','TaquillaController@preregistro');
+Route::get('/visitantes','TaquillaController@visitantes');
+
 });
