@@ -31,5 +31,6 @@ Route::get('/registro','TaquillaController@registro');
 Route::post('/registro','TaquillaController@registrar');
 Route::get('/preregistro','TaquillaController@preregistro');
 Route::get('/visitantes','TaquillaController@visitantes');
+Route::get('/visitante','TaquillaController@visitante');
 
 });

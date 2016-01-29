@@ -45,4 +45,15 @@ class TaquillaController extends Controller
     	$visitantes = Taquilla::all();
     	return $visitantes;
     }
+
+    public function visitante(Request $request){
+        
+        $visitante = Taquilla::where('boleto',$request->input('boleto'))->first();
+        if($visitante){
+            return $visitante;
+        }
+        else{
+            return ('NO ENCONTRADO');
+        }
+    }
 }
