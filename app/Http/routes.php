@@ -10,6 +10,14 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::post('/visitante','TaquillaController@visitante');
+
+
+
+///API PAPALOTE
+///
+
+Route::post('/api/nuevo','PapaloteController@registrar_visitante');
 
 /*
 |--------------------------------------------------------------------------
@@ -31,5 +39,7 @@ Route::get('/registro','TaquillaController@registro');
 Route::post('/registro','TaquillaController@registrar');
 Route::get('/preregistro','TaquillaController@preregistro');
 Route::get('/visitantes','TaquillaController@visitantes');
+
+
 
 });
