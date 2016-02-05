@@ -15,8 +15,10 @@
 
 Route::post('/nuevo','PapaloteController@registrar');
 
+Route::get('/v0/visitante/{id}','PapaloteController@visitante');
 
-	Route::post('/visitante','TaquillaController@visitante');
+
+Route::post('/visitante','TaquillaController@visitante');
 
 
 

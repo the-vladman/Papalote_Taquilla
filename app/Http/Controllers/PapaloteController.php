@@ -39,7 +39,12 @@ class PapaloteController extends Controller
 
             $visitante->save();
 
-            return $visitante;
+            return 'Saved!';
+    }
+
+    public function visitante($id){
+        $visitante = Papalote::find($id);
+        return $visitante;
     }
     
 }
