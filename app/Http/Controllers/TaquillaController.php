@@ -47,8 +47,7 @@ class TaquillaController extends Controller
     }
 
     public function visitante(Request $request){
-        
-        $visitante = Taquilla::where('boleto',$request->input('boleto'))->first();
+        $visitante = Taquilla::where('email',$request->input('email'))->first();
         if($visitante){
             return $visitante;
         }

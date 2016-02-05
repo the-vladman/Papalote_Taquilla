@@ -11,6 +11,19 @@
 |
 */
 
+
+
+Route::post('/nuevo','PapaloteController@registrar');
+
+
+	Route::post('/visitante','TaquillaController@visitante');
+
+
+
+///API PAPALOTE
+///
+
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -26,11 +39,13 @@
 Route::group(['middleware' => ['web']], function () {
     //
     //
-    Route::get('/','TaquillaController@home');
+   // Route::get('/','TaquillaController@home');
 Route::get('/registro','TaquillaController@registro');
 Route::post('/registro','TaquillaController@registrar');
 Route::get('/preregistro','TaquillaController@preregistro');
 Route::get('/visitantes','TaquillaController@visitantes');
-Route::get('/visitante','TaquillaController@visitante');
+
+
+
 
 });
