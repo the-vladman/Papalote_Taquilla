@@ -27,6 +27,7 @@ class PapaloteController extends Controller
             $visitante->nombre = $request->input('nombre');
             $visitante->edad = $request->input('edad');
             $visitante->genero = $request->input('genero');
+            $visitante->rfid = $request->input('rfid');
             $date = Carbon::now();
             $visitante->fecha_visita = $date->toDateString(); // Imprime una fecha en el formato día/mes/año
             $visitante->save();
@@ -46,5 +47,9 @@ class PapaloteController extends Controller
         $visitante = Papalote::find($id);
         return $visitante;
     }
-    
+
+    public function mostrar_fotos(){
+        $papalotes = Papalote::all();
+        return view('Tauilla/gal',compact('papalotes'));
+    }
 }
