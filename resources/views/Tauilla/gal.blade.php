@@ -1,3 +1,4 @@
+
 @extends('taquilla')
 
 @section('home')
@@ -23,3 +24,6 @@
       </div>
 @endforeach
 @endsection
+
+
+

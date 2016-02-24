@@ -43,10 +43,10 @@ class PapaloteController extends Controller
             return 'Saved!';
     }
 
-    public function visitante($id){
-        $visitante = Papalote::find($id);
-        return $visitante;
-    }
+    
+    
+        
+    
 
     public function mostrar_fotos(){
         $papalotes = Papalote::all();
