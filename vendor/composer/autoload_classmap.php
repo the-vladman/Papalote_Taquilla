@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddPuntosTable' => $baseDir . '/database/migrations/2016_02_29_171133_add_puntos_table.php',
     'AddRfidPapalotes' => $baseDir . '/database/migrations/2016_02_18_175921_add_rfid_papalotes.php',
     'CreatePapalotesTable' => $baseDir . '/database/migrations/2016_02_05_022916_create_papalotes_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',

@@ -15,8 +15,9 @@
 
 Route::post('/nuevo','PapaloteController@registrar');
 
-Route::get('/v0/visitante','PapaloteController@visitante1');
+Route::get('/v0/visitante','PapaloteController@visitante');
 
+Route::post('/v0/agregar_puntos','PapaloteController@sumar_puntos');
 
 Route::post('/visitante','TaquillaController@visitante');
 
