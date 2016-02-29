@@ -13,6 +13,9 @@
 
 
 
+
+Route::group(['middleware' => ['cors']], function () {
+
 Route::post('/nuevo','PapaloteController@registrar');
 
 Route::get('/v0/visitante','PapaloteController@visitante');
@@ -20,6 +23,12 @@ Route::get('/v0/visitante','PapaloteController@visitante');
 Route::post('/v0/agregar_puntos','PapaloteController@sumar_puntos');
 
 Route::post('/visitante','TaquillaController@visitante');
+
+Route::get('/visitantes','TaquillaController@visitantes');
+
+});
+
+
 
 
 
@@ -46,7 +55,6 @@ Route::group(['middleware' => ['web']], function () {
 Route::get('/registro','TaquillaController@registro');
 Route::post('/registro','TaquillaController@registrar');
 Route::get('/preregistro','TaquillaController@preregistro');
-Route::get('/visitantes','TaquillaController@visitantes');
 Route::get('/v0/fotos','PapaloteController@mostrar_fotos');
 
 
