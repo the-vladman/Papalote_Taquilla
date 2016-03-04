@@ -31,16 +31,52 @@ class PapaloteController extends Controller
             $date = Carbon::now();
             $visitante->fecha_visita = $date->toDateString(); // Imprime una fecha en el formato día/mes/año
             $visitante->save();
+
+            // :::::::::::::::: Imagen Adquirir :::::::::::::::: 
             $path = public_path();
             $file = $request->file('foto');
-            $extension = $request->file('foto')->getClientOriginalExtension();
+            $extension = 'png';
             $nombre = $visitante->id.'.'.$extension;
-            Storage::put('Fotos_Perfil/'.$nombre, \File::get($file));
+            Storage::put('Fotos/'.$nombre, \File::get($file));
+            // :::::::::::::::: File ancho y largo ::::::::::::::::
+            $v = Storage::get($path.'/Papalote/Fotos/'.$nombre);
+            $d = base64_decode($v);
+            $vieja =  imagecreatefrompng($d);
+            $f_w = imagesx($vieja);
+            $f_h = imagesy($vieja);
+            // :::::::::::::::: dimensionees de la imagen ::::::::::::::::
+            $n_w = $f_w;
+            $n_h = $f_h;
+            // :::::::::::::::: crear nueva imagen ::::::::::::::::
+            $image = imagecreatetruecolor($n_w, $n_h);
+            imagealphablending($image,true);
+            imagecopyresampled($image,$vieja,0,0,0,0,$n_w,$n_h,$f_w,$f_h);
+            // :::::::::::::::: crear mascara ::::::::::::::::
+            $mask = imagecreatetruecolor($f_w, $f_h);
+            $mask = imagecreatetruecolor($n_w, $n_h);
+            // :::::::::::::::: crear trasnparencia ::::::::::::::::
+            $transparent = imagecolorallocate($mask, 255, 0, 0);
+            imagecolortransparent($mask, $transparent);
+            // :::::::::::::::: crear circulo ::::::::::::::::
+            imagefilledellipse($mask, $n_w/2, $n_h/2, $n_w, $n_h, $transparent);
+
+            $red = imagecolorallocate($mask, 0, 0, 0);
+            imagecopy($image, $mask, 0, 0, 0, 0, $n_w, $n_h);
+            imagecolortransparent($image, $red);
+            imagefill($image,0,0, $red);
+
+            // output and free memory
+            header('Content-type: image/png');
+            imagepng($image);
+            imagedestroy($mask);    
+
+            // :::::::::::::::: Imagen Guardar :::::::::::::::: 
+            Storage::put('Fotos_Perfil/'.$nombre, \File::get($image));
             $visitante->url_perfil = 'http://papalote.cocoplan.mx/Papalote/Fotos_Perfil/'. $nombre;
             $visitante->save();
 
             return 'Saved!';
-    }
+}
 
     public function visitante(Request $request){
         $visitante = Papalote::where('rfid',$request->input('rfid'))->first();
